@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { CurrencyTableControllerComponent } from './controllers/currency-table-controller/currency-table-controller.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CurrencyTableControllerComponent
   ],
   imports: [
     BrowserModule
