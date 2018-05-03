@@ -1,6 +1,6 @@
 import {Money} from './Money';
 
-class Bot {
+export class Bot {
   money_in_bitcoin: Money;
   money_in_cCurrency: Money;
   unix_time: number;

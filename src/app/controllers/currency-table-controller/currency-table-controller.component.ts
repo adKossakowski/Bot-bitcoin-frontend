@@ -7,16 +7,16 @@ import {JsonBitcoinCurrencyService} from '../../services/json-bitcoin-currency.s
   styleUrls: ['./currency-table-controller.component.css']
 })
 export class CurrencyTableControllerComponent implements OnInit {
-  
-  getCurrencyTable(): Observable<> {
 
-  }
+  // getCurrencyTable(): Observable<> {
+  //
+  // }
 
 
   constructor(private jsonCurrency: JsonBitcoinCurrencyService) { }
 
   ngOnInit() {
-    this.getCurrencyTable();
+    // this.getCurrencyTable();
   }
 
 }

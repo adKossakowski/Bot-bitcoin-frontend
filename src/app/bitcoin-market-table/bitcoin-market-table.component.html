@@ -1,0 +1,26 @@
+<!--<div>-->
+  <!--<div *ngFor="let item of bitcoinMarketTableArray" >-->
+    <!--<p>Date: {{item.date}} | Price: {{item.price}} | Type of operation: {{item.type}}</p>-->
+  <!--</div>-->
+<!--</div>-->
+
+<table class="table table-dark">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Data</th>
+    <th scope="col">Kurs</th>
+    <th scope="col">Operacja</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of bitcoinMarketTableArray">
+  <tr>
+    <th scope="row"> </th>
+    <td>{{item.date}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.type}}</td>
+  </tr>
+  </ng-container>
+  </tbody>
+</table>

@@ -8,7 +8,8 @@ import {BitcoinCurrencyTable} from '../model/BitcoinCurrencyTable';
 export class JsonBitcoinCurrencyService {
 
   getBitcoinMarketTable(): Observable<Array<BitcoinModel>> {
-    return this.http.get<Array<BitcoinModel>>('https://bitbay.net/API/Public/BTCPLN/trades.json?since=43');
+    console.log('Http json service start');
+    return this.http.get<Array<BitcoinModel>>('https://bitbay.net/API/Public/BTCUSD/trades.json');
   }
 
   getBitcoinCurrencyTable() {
@@ -17,5 +18,4 @@ export class JsonBitcoinCurrencyService {
 
 
   constructor(private http: HttpClient) { }
-
 }

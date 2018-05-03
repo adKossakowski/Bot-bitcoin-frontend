@@ -1,5 +1,5 @@
 export class Currency {
   code: string;
-  rate: number;
+  rate: string;
   rate_float: number;
 }

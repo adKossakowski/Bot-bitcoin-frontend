@@ -1,5 +1,5 @@
 export interface BitcoinModel {
-  date: integer;
-  price: ineter;
+  date: number;
+  price: number;
   type: string;
 }
