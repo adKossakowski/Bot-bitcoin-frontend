@@ -1,0 +1,18 @@
+/*.jumbotron {*/
+  /*text-align: center;*/
+  /*font-size: 20px;*/
+  /*height: 30px;*/
+  /*color: mediumslateblue;*/
+/*}*/
+
+jumbotron {
+  width: 40%;
+  background: #323a3d;
+  text-align: center;
+  height: 20px;
+}
+h2 {
+  font-size: 30px;
+  line-height: 20px;
+}
+
