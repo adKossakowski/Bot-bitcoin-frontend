@@ -1,12 +1,24 @@
-<p>
-  Money: {{money_in_Currency}}
-</p>
-<p>
-  Bitcoins: {{money_in_bitcoin}}
-</p>
-<p>
-  Ostatni kurs: {{kursyRzeczywiste[kursyRzeczywiste.length - 1]}}
-</p>
-<p>
-  Ostatnie przewidywania: {{przewidywaniaKursow[przewidywaniaKursow.length - 1]}}
-</p>
+<span class="d-block p-2 bg-primary text-white">Dane Twojego Bota</span>
+<!--<div class="border border-primary">-->
+  <table class="table table-bordered table-dark">
+    <tbody>
+    <tr>
+      <td style="text-align: center">Money</td>
+      <td>{{money_in_Currency}}</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Bitcoins</td>
+      <td>{{money_in_bitcoin}}</td>
+    </tr>
+    <tr>
+      <td style="width: 40%; text-align: center">Ostatni kurs</td>
+      <td>{{kursyRzeczywiste[kursyRzeczywiste.length - 1]}}</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ostatnie przewidywania</td>
+      <td>{{przewidywaniaKursow[przewidywaniaKursow.length - 1]}}</td>
+    </tr>
+    </tbody>
+  </table>
+<!--</div>-->
+
