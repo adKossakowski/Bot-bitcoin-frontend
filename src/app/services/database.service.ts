@@ -5,8 +5,8 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class DatabaseService {
 
-  getPredictionOfBitcoin(day: number, month: number) {
-    return this.http.get<Money>('127.0.0.1:8080/currency/database:' + day + ':' + month);
+  getPredictionOfBitcoin() {
+    return this.http.get<Money>('127.0.0.1:8080/currency/database');
   }
 
   constructor(private http: HttpClient) { }

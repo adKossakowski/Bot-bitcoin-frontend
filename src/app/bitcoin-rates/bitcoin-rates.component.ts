@@ -14,7 +14,13 @@ export class BitcoinRatesComponent implements OnInit {
   constructor(private jsonService: JsonBitcoinCurrencyService) { }
 
   ngOnInit() {
-    this.getJsonService();
+    this.timeService();
+  }
+
+  timeService(): void {
+    setInterval(() => {
+      this.getJsonService();
+    }, 300000);
   }
 
   getJsonService() {

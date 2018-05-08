@@ -11,6 +11,8 @@ import {BitcoinCurrencyTable} from '../model/BitcoinCurrencyTable';
 })
 export class BotComponent implements OnInit {
 
+  time: Date;
+
   money_in_bitcoin: Money;
   money_in_Currency: Money;
   unix_time: number;
@@ -25,6 +27,7 @@ export class BotComponent implements OnInit {
 
   ngOnInit() {
     this.pobierzPrzewidywanieNaNastDzien();
+    this.timeService();
   }
 
   doladujKonto (doladowanie: number) {
@@ -48,11 +51,8 @@ export class BotComponent implements OnInit {
   }
 
   private pobierzPrzewidywanieNaNastDzien() {
-    const date = new Date();
-    const dzien = date.getDay();
-    const miesiac = date.getMonth();
 
-    this.databaseService.getPredictionOfBitcoin(dzien, miesiac).subscribe(data => {
+    this.databaseService.getPredictionOfBitcoin().subscribe(data => {
       this.kursPrzewidywany = data;
       this.przewidywaniaKursow.push(this.kursPrzewidywany);
     });
@@ -67,6 +67,15 @@ export class BotComponent implements OnInit {
     } else {
       this.wymienNaWalute();
     }
+  }
+
+  timeService(): void {
+    setInterval(() => {
+      this.time = new Date();
+      if (this.time.getHours() === 1 && this.time.getMinutes() === 30) {
+        this.pobierzPrzewidywanieNaNastDzien();
+      }
+    }, 1000);
   }
 
 }
