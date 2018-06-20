@@ -49,19 +49,22 @@
       <app-bot></app-bot>
     </div>
     <div class="col">
-      <span class="d-block p-2 bg-primary text-white">Kurs bitcoina</span>
-      <div class="border border-primary">
-        wykres
+      <div class="mb-2 bg-white bg-secondary text-dark">
+        <app-bitcoin-rates></app-bitcoin-rates>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
-      <app-bitcoin-market-table></app-bitcoin-market-table>
-    </div>
+    <!--<div class="col-6">-->
+      <!--<app-bitcoin-market-table></app-bitcoin-market-table>-->
+    <!--</div>-->
     <div class="col" >
-      <div class="mb-2 bg-white bg-secondary text-dark">
-      <app-bitcoin-rates></app-bitcoin-rates>
+      <span class="d-block p-2 bg-primary text-white">Kurs bitcoina</span>
+      <div class="border border-primary">
+        <ng-dygraphs
+          [data]="data"
+          [options]="options">
+        </ng-dygraphs>
       </div>
     </div>
   </div>
@@ -69,4 +72,17 @@
 
 </div>
 </div>
+
+<!--<script type="text/javascript">-->
+  <!--g4 = new Dygraph(-->
+    <!--document.getElementById("graphdiv4"),-->
+    <!--"C:\\Users\\Adam\\Desktop\\PracaLicencjacka\\Bot-bitcoin-frontend\\src\\twonormals.csv",-->
+    <!--{-->
+      <!--rollPeriod: 7,-->
+      <!--showRoller: true,-->
+      <!--errorBars: true,-->
+      <!--valueRange: [50,125]-->
+    <!--}-->
+  <!--);-->
+<!--</script>-->
 

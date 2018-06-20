@@ -18,7 +18,8 @@ export class BotComponent implements OnInit {
   unix_time: number;
   liveBitcoinPrice: Money;
   kursPrzewidywany: Money;
-  obecnaInwestycja: boolean; //jest obecnie bot ma kupione bitcoiny to true
+  obecnaInwestycja: boolean;
+  // jest obecnie bot ma kupione bitcoiny to true
   przewidywaniaKursow: Array<Money> = [];
   kursyRzeczywiste: Array<Money> = [];
   // money_history: Array<Money> = [];

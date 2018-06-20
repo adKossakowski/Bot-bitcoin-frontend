@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import { BitcoinRatesComponent } from './bitcoin-rates/bitcoin-rates.component';
 import { BotComponent } from './bot/bot.component';
 import {DatabaseService} from './services/database.service';
+import { NgDygraphsModule } from 'ng-dygraphs';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {DatabaseService} from './services/database.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgDygraphsModule
   ],
   providers: [JsonBitcoinCurrencyService, DatabaseService],
   bootstrap: [AppComponent]
