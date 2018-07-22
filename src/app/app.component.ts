@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import {Component, OnInit} from '@angular/core';
+import { PredictionParameters } from '/model/PredictionParameters';
+import {DatabaseService} from './services/database.service';
 
 
 @Component({
@@ -7,7 +8,13 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  predictionParameters: PredictionParameters;
+
+  constructor(private databaseService: DatabaseService) {
+
+  }
 
   data = [[new Date('2008/05/07'), 1715],
          [new Date('2008/05/08'), 1170],
@@ -19,12 +26,27 @@ export class AppComponent {
   options = {width: '1000', height: '400',
     // customBars: true,
     legend: 'always',
-    labels: ['Data','Kurs Bitcoina'],
+    labels: ['Data', 'Kurs Bitcoina'],
     xlabel: 'X label text', ylabel: 'Y label text', title: 'Working title :)',
     animatedZooms: true, pointSize: 4};
 
+  ngOnInit() {
+    this.databaseService.getPredictionParameters().subscribe(data => {
+      this.predictionParameters = data;
+    });
+  }
 
-  // new TradingView.widget();
+  getDefaultPrediction($event): void {
+    this.databaseService.newDefaultPrediction().subscribe(data => {
+      this.predictionParameters = data;
+    });
+  }
+
+  getDedicatedPrediction($event): void {
+    this.databaseService.newDedicatedPrediction(this.predictionParameters).subscribe(data => {
+      this.predictionParameters = data;
+    });
+  }
 
 }
 

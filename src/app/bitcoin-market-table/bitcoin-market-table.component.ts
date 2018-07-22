@@ -25,7 +25,7 @@ export class BitcoinMarketTableComponent implements OnInit {
 
   dateConventer(unixTime: number): string {
     const date =  new Date(unixTime * 1000);
-    return date.getDay() + " " + date.getMonth() + " " + date.getFullYear();
+    return date.getDay() + ' ' + date.getMonth() + ' ' + date.getFullYear();
   }
 
 }
