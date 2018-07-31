@@ -1,5 +1,5 @@
 export interface PredictionParameters {
-  trainingSet: number;
-  testingSet: number;
-  predictionWindow: number;
+  train_size: number;
+  test_size: number;
+  window_size: number;
 }

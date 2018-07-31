@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { PredictionParameters } from '/model/PredictionParameters';
+import { PredictionParameters } from './model/PredictionParameters';
 import {DatabaseService} from './services/database.service';
 
 
@@ -31,21 +31,24 @@ export class AppComponent implements OnInit {
     animatedZooms: true, pointSize: 4};
 
   ngOnInit() {
-    this.databaseService.getPredictionParameters().subscribe(data => {
-      this.predictionParameters = data;
-    });
+    // this.predictionParameters = new PredictionParameters();
+    // this.predictionParameters.test_size = 1;
+    // this.predictionParameters.train_size = 1;
+    // this.predictionParameters.window_size = 1;
+    // this.databaseService.getPredictionParameters().subscribe(data => {
+    //   this.predictionParameters = data;
+    // });
   }
 
-  getDefaultPrediction($event): void {
-    this.databaseService.newDefaultPrediction().subscribe(data => {
-      this.predictionParameters = data;
-    });
+
+  getDefaultPrediction(): void {
+    this.databaseService.newDefaultPrediction();
   }
 
-  getDedicatedPrediction($event): void {
-    this.databaseService.newDedicatedPrediction(this.predictionParameters).subscribe(data => {
-      this.predictionParameters = data;
-    });
+  getDedicatedPrediction(): void {
+    // this.databaseService.newDedicatedPrediction(this.predictionParameters).subscribe(data => {
+    //   this.predictionParameters = data;
+    // });
   }
 
 }

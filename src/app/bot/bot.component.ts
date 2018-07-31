@@ -53,21 +53,21 @@ export class BotComponent implements OnInit {
 
   private pobierzPrzewidywanieNaNastDzien() {
 
-    this.databaseService.getPredictionOfBitcoin().subscribe(data => {
-      this.kursPrzewidywany = data;
-      this.przewidywaniaKursow.push(this.kursPrzewidywany);
-    });
+    // this.databaseService.getPredictionOfBitcoin().subscribe(data => {
+    //   this.kursPrzewidywany = data;
+    //   this.przewidywaniaKursow.push(this.kursPrzewidywany);
+    // });
 
     this.httpService.getBitcoinCurrencyTable().subscribe(data => {
       this.liveBitcoinPrice.amount = data.bpi.USD.rate_float;
       this.liveBitcoinPrice.currency = data.bpi.USD.code;
     });
 
-    if (this.kursPrzewidywany > this.liveBitcoinPrice) {
-      this.wymienNaBitcoiny();
-    } else {
-      this.wymienNaWalute();
-    }
+    // if (this.kursPrzewidywany > this.liveBitcoinPrice) {
+    //   this.wymienNaBitcoiny();
+    // } else {
+    //   this.wymienNaWalute();
+    // }
   }
 
   timeService(): void {
