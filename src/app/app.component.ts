@@ -11,18 +11,16 @@ import {ChartDataParameters} from './model/ChartDataParameters';
 })
 export class AppComponent implements OnInit {
 
-  predictionParameters: PredictionParameters = null;
-  data: Array<ChartDataParameters> = null;
+  predictionParameters: PredictionParameters;
+  data_origin: Array<ChartDataParameters>;
 
   constructor(private databaseService: DatabaseService) {
 
   }
 
-  // data = [[new Date('2008/05/07'), 1, 2],
-  //        [new Date('2008/05/08'), 2, 3],
-  //        [new Date('2008/05/09'), 3, 4],
-  //        [new Date('2008/05/10'), 10, 11],
-  //        [new Date('2008/05/11'), 9, 15]
+  data = null;
+
+  // data = [[new Date('2018/07/22'), 1, 2]
   //       ];
 
   options = {width: '1000', height: '400',
@@ -33,41 +31,38 @@ export class AppComponent implements OnInit {
     animatedZooms: true, pointSize: 4};
 
   ngOnInit() {
-    this.databaseService.getChartData().subscribe( d => {
-      this.data = d;
+    console.log('init application');
+    this.databaseService.initApplication();
+
+    this.databaseService.getChartData().subscribe(d => {
+
+      for (let i = 0; i < d.length; i++) {
+        this.data.push([d[i].date, d[i].prediction, d[i].currency]);
+      }
+
     });
-    this.predictionParameters.test_size = 1;
-    this.predictionParameters.train_size = 1;
-    this.predictionParameters.window_size = 1;
-    // this.getPredictionParameters();
-    this.timeService();
-
-    // this.databaseService.getPredictionParameters().subscribe(data => {
-    //   this.predictionParameters = data;
-    // });
-  }
-
-  getPredictionParameters(): void {
-    this.databaseService.getPredictionParameters().subscribe( data => {
-        this.predictionParameters = data;
-      },
-      err => {
-        console.log('Connection error');
-      });
-  }
-
-  timeService(): void {
-    setInterval(() => {
-      this.getPredictionParameters();
-    }, 300000);
+   //  this.databaseService.getChartData().subscribe( d => {
+   //    console.log('chartData');
+   //    console.log('PP' + d);
+   //    this.data_origin = d;
+   //  });
+   //  console.log('Length' + this.data_origin.length);
+   // for (let i = 0; i < this.data_origin.length; i++) {
+   //   this.data.push([this.data_origin[i].date, this.data_origin[i].prediction, this.data_origin[i].currency]);
+   // }
   }
 
   getDefaultPrediction(): void {
     this.databaseService.newDefaultPrediction();
   }
 
-  getDedicatedPrediction(): void {
+  getDedicatedPrediction(test, train, window): void {
+    // this.predictionParameters = new PredictionParameters;
+    this.predictionParameters.train_size = train;
+    this.predictionParameters.test_size = test;
+    this.predictionParameters.window_size = window;
     this.databaseService.newDedicatedPrediction(this.predictionParameters);
+    setTimeout(3000);
   }
 
 }

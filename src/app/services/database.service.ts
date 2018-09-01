@@ -5,11 +5,20 @@ import {PredictionParameters} from '../model/PredictionParameters';
 import {RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {ChartDataParameters} from '../model/ChartDataParameters';
+import {Bot} from '../model/Bot';
 
 @Injectable()
 export class DatabaseService {
 
   constructor(private http: HttpClient) { }
+
+  getBotData(): Observable<Bot> {
+    return this.http.get<Bot>('http://127.0.0.1:8080/currency/getBotData');
+  }
+
+  getChartData(): Observable<Array<ChartDataParameters>> {
+    return this.http.get<Array<ChartDataParameters>>('http://127.0.0.1:8080/currency/chartData');
+  }
 
   getPredictionOfBitcoin() {
     // return this.http.get<Money>('http://127.0.0.1:8080/currency/database');
@@ -20,7 +29,12 @@ export class DatabaseService {
       { params: {'trainingSet': predictionParameters.train_size.toString(),
           'testingSet': predictionParameters.test_size.toString(),
           // 'predictionWindow': predictionParameters.window_size.toString()}}).map((res: Response) => res.json());
-          'predictionWindow': predictionParameters.window_size.toString()}});
+          'predictionWindow': predictionParameters.window_size.toString()}}).subscribe(
+      res => { console.log(res);
+      },
+      err => {
+        console.log('Error');
+      });
   }
 
   newDefaultPrediction(): void  {
@@ -36,15 +50,13 @@ export class DatabaseService {
     return this.http.get<PredictionParameters>('http://127.0.0.1:8080/currency/predictionParamters');
   }
 
-  mapPrediction(response: Response): PredictionParameters {
-    return this.toPredictionParameters(response.json());
-  }
-
-  toPredictionParameters(r: any): PredictionParameters {
-    return r;
-  }
-
-  getChartData(): Observable<Array<ChartDataParameters>> {
-    return this.http.get<Array<ChartDataParameters>>('http://127.0.0.1:8080/currency/chartData');
+  initApplication(): void {
+    console.log('InitApplicationIside');
+    this.http.get('http://127.0.0.1:8080/currency/initProgram').subscribe(
+      res => { console.log(res);
+      },
+      err => {
+        console.log('Error');
+      });
   }
 }

@@ -77,19 +77,19 @@
         <tbody>
         <tr>
           <td>Zbiór testowy</td>
-          <td><input type="number" [(ngModel)]="predictionParameters.test_size"></td>
+          <td><input #test_size type="number"></td>
         </tr>
         <tr>
           <td>Zbiór treningowy</td>
-          <td><input type="number" [(ngModel)]="predictionParameters.train_size"></td>
+          <td><input #train_size type="number"></td>
         </tr>
         <tr>
           <td>Okono przewidywania</td>
-          <td><input type="number" [(ngModel)]="predictionParameters.window_size"></td>
+          <td><input #window_size type="number"></td>
         </tr>
         </tbody>
       </table>
-      <button type="button" class="btn btn-success" (click)="getDedicatedPrediction($event)">Przeładuj predykację</button>
+      <button type="button" class="btn btn-success" (click)="getDedicatedPrediction(test_size.value,train_size.value,window_size.value)">Przeładuj predykację</button>
     </div>
   </div>
 
