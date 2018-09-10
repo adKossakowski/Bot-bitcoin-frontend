@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import {Money} from '../model/Money';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {PredictionParameters} from '../model/PredictionParameters';
-import {RequestOptions} from '@angular/http';
+import {Http, RequestOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {ChartDataParameters} from '../model/ChartDataParameters';
 import {Bot} from '../model/Bot';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DatabaseService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpRest: Http) { }
 
   getBotData(): Observable<Bot> {
     return this.http.get<Bot>('http://127.0.0.1:8080/currency/getBotData');
@@ -20,21 +21,14 @@ export class DatabaseService {
     return this.http.get<Array<ChartDataParameters>>('http://127.0.0.1:8080/currency/chartData');
   }
 
-  getPredictionOfBitcoin() {
-    // return this.http.get<Money>('http://127.0.0.1:8080/currency/database');
-  }
 
-  newDedicatedPrediction(predictionParameters: PredictionParameters) {
-    return this.http.get<PredictionParameters>('http://127.0.0.1:8080/currency/dedicatedPrediction',
-      { params: {'trainingSet': predictionParameters.train_size.toString(),
-          'testingSet': predictionParameters.test_size.toString(),
-          // 'predictionWindow': predictionParameters.window_size.toString()}}).map((res: Response) => res.json());
-          'predictionWindow': predictionParameters.window_size.toString()}}).subscribe(
-      res => { console.log(res);
-      },
-      err => {
-        console.log('Error');
-      });
+  newDedicatedPrediction(test, train, window) {
+    this.http.get('http://127.0.0.1:8080/currency/dedicatedPrediction',
+      { params: {'trainSet': train,
+          'testSet': test,
+          'predWindow': window}, headers: {
+          'Access-Control-Allow-Origin': '*'
+        }}).subscribe();
   }
 
   newDefaultPrediction(): void  {

@@ -12,6 +12,7 @@ import { BitcoinRatesComponent } from './bitcoin-rates/bitcoin-rates.component';
 import { BotComponent } from './bot/bot.component';
 import {DatabaseService} from './services/database.service';
 import { NgDygraphsModule } from 'ng-dygraphs';
+import {HttpModule} from '@angular/http';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NgDygraphsModule } from 'ng-dygraphs';
     BotComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
